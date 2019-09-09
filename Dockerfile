@@ -12,6 +12,8 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
+RUN spacy download en_core_web_sm
+
 COPY . /app
 
 ENTRYPOINT [ "python" ]
