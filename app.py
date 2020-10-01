@@ -3,6 +3,7 @@ from flask import request, jsonify
 import spacy
 import re
 from flask_cors import CORS, cross_origin
+import os
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -12,6 +13,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 nlp = spacy.load("en_core_web_sm")
 
 @app.route('/test', methods=['POST'])
+@cross_origin()
 def parseBody():
     content = request.json
     content = content["body"]
@@ -84,5 +86,6 @@ def parseData(data):
     result["time"] = list(dict.fromkeys(time))
 
     return result
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
