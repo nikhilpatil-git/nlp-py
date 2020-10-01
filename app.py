@@ -12,7 +12,6 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 nlp = spacy.load("en_core_web_sm")
 
 @app.route('/test', methods=['POST'])
-@cross_origin()
 def parseBody():
     content = request.json
     content = content["body"]
@@ -86,4 +85,4 @@ def parseData(data):
 
     return result
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
